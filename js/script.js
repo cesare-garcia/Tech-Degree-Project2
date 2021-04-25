@@ -18,13 +18,21 @@ Create the `showPage` function
 This function will create and insert/append the elements needed to display a "page" of nine students
 */
 
-// Must use quotation marks when entering arguments into the function. Otherwise it won't work.
+// The deviseElement function will streamline my code so that the showPage function is easier to read.
+// Must use quotation marks when entering arguments into the function. Otherwise it won't work. This function
+// creates the element that is fed into the function and then changes its class to the class fed into it. 
+
+
 function deviseElement(element, nameofclass) {
    const createdElement = document.createElement(element);
    createdElement.className = nameofclass;
    return createdElement;
 }
- 
+
+// The purpose of the appendElement function is to streamline the code in my showPage function by 
+// handling the appendChild method for each set of elements. You feed the parent and child elements into the function
+// and they come out connected. 
+
 function appendElement(parent, child) {
    parent.appendChild(child);
 }
@@ -56,7 +64,6 @@ function showPage(list, page) {
          appendElement(list_student, div_student);
          appendElement(list_student, div_student_two);
          //return list_student; Testing purposes - Everything is nested correctly and showing the right info
-
          studentListUL.insertAdjacentElement('beforeend', list_student);
       }
    }
@@ -66,22 +73,34 @@ function showPage(list, page) {
 Create the `addPagination` function
 This function will create and insert/append the elements needed for the pagination buttons
 */
-/*
+
 function addPagination(list) {
-   const list_length = list.length / 9;
-   const ul_linklist = document.getElementsByClassName('link-list');
+   const list_length = list.length / 9; // may need to round up or down here
+   const ul_linklist = document.querySelector('.link-list');
    ul_linklist.innerHTML = '';
 
    for ( i = 0; i < list_length; i++ ) {
-
-
-
-
+      const buttonListItem = document.createElement('li');
+      const pageButton = document.createElement('button');
+      pageButton.textContent = `${i+1}`;
+      // adding an if statement to change the first button's className to active
+      if ( i == 0 ) {
+         pageButton.className = 'active';
+      }
+      appendElement(buttonListItem, pageButton);
+      ul_linklist.insertAdjacentElement('beforeend', buttonListItem);
    }
-
-
+   // Still need to figure out how to make it fire specifically on the buttons and not around them.
+   ul_linklist.addEventListener('click', (e) => {
+      const newInactiveButton = document.querySelector('.active');
+      newInactiveButton.className = '';
+      const newActiveButton = e.target;
+      newActiveButton.className = 'active';
+      showPage(data, newActiveButton.textContent);
+   })
 }
-*/
-
 
 // Call functions
+
+showPage(data, 1);
+addPagination(data);
