@@ -35,7 +35,8 @@ function showPage(list, page) {
    const studentListUL = document.querySelector('.student-list');
    studentListUL.innerHTML = '';
    for ( i = 0; i < list.length; i++ ) {
-      if ( i >= startIndex && i <= endIndex ) {
+      // Make sure the second part of the if statement is set to i<endIndex so that only 9 appear on one page.
+      if ( i >= startIndex && i < endIndex ) {
          const list_student = deviseElement('li', 'student-item cf');
          const div_student = deviseElement('div', 'student-details');
          const img_student = deviseElement('img', 'avatar');
