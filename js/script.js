@@ -104,11 +104,6 @@ function addPagination(list) {
    })
 }
 
-// Call functions
-
-showPage(data, 1);
-addPagination(data);
-
 // extra credit - Add a search component
 
 function addSearchBar() {
@@ -124,13 +119,28 @@ function addSearchBar() {
    const searchIMG = deviseElement('img', '');
    searchIMG.src = 'img/icn-search.svg';
    searchIMG.alt = 'Search Icon';
-   
    appendElement(searchButton, searchIMG);
    appendElement(searchLabel, searchSpan);
    appendElement(searchLabel, searchInput);
    appendElement(searchLabel, searchButton);
-
    const headingTwo = document.querySelector('h2');
    headingTwo.insertAdjacentElement('beforeend', searchLabel);
 
 }
+
+// Call functions
+
+showPage(data, 1);
+addPagination(data);
+addSearchBar();
+
+// Adding functionality to the Search Bar via event Listener
+
+const searchfunction = document.querySelector('input');
+searchfunction.addEventListener('search', (e) => {
+   
+
+
+
+
+})
