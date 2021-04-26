@@ -91,12 +91,16 @@ function addPagination(list) {
       ul_linklist.insertAdjacentElement('beforeend', buttonListItem);
    }
    // Still need to figure out how to make it fire specifically on the buttons and not around them.
+   
    ul_linklist.addEventListener('click', (e) => {
-      const newInactiveButton = document.querySelector('.active');
-      newInactiveButton.className = '';
-      const newActiveButton = e.target;
-      newActiveButton.className = 'active';
-      showPage(data, newActiveButton.textContent);
+      // .tagName always returns the name of the tag in uppercase letters, so make sure it's BUTTON not button.
+      if ( e.target.tagName == 'BUTTON' ) {
+         const newInactiveButton = document.querySelector('.active');
+         newInactiveButton.className = 'inactive';
+         const newActiveButton = e.target;
+         newActiveButton.className = 'active';
+         showPage(data, newActiveButton.textContent);
+      }
    })
 }
 
@@ -104,3 +108,29 @@ function addPagination(list) {
 
 showPage(data, 1);
 addPagination(data);
+
+// extra credit - Add a search component
+
+function addSearchBar() {
+   const searchLabel = deviseElement('label', 'student-search');
+   searchLabel.htmlFor = 'search';
+   const searchSpan = deviseElement('span', '');
+   searchSpan.textContent = 'Search by name';
+   const searchInput = deviseElement('input', '');
+   searchInput.id = 'search';
+   searchInput.placeholder = 'Search by name...';
+   const searchButton = deviseElement('button', '');
+   searchButton.type = 'button';
+   const searchIMG = deviseElement('img', '');
+   searchIMG.src = 'img/icn-search.svg';
+   searchIMG.alt = 'Search Icon';
+   
+   appendElement(searchButton, searchIMG);
+   appendElement(searchLabel, searchSpan);
+   appendElement(searchLabel, searchInput);
+   appendElement(searchLabel, searchButton);
+
+   const headingTwo = document.querySelector('h2');
+   headingTwo.insertAdjacentElement('beforeend', searchLabel);
+
+}
