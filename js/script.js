@@ -136,11 +136,26 @@ addSearchBar();
 
 // Adding functionality to the Search Bar via event Listener
 
-const searchfunction = document.querySelector('input');
-searchfunction.addEventListener('search', (e) => {
-   
 
+const search = document.querySelector('#search');
+const submit = document.querySelector('button'); 
 
+function performSearch(searchInput, students) {
+   console.log(searchInput);
+   //console.log(students);
+   let newStudentArray = [];
+   for ( let i = 0; i < students.length; i++ ) {
+      newStudentArray += `${students[i].name.first} ${students[i].name.last}, `;
+   }
+   return newStudentArray;
+    
+ // likely will need to add these names to a new array
+ // this array will be used for the new pagination 
+      
+}
 
-
-})
+submit.addEventListener('click', (event) => {
+   event.preventDefault();
+   const info = performSearch(search, data);
+   console.log(info);
+});
