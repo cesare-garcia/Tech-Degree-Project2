@@ -73,7 +73,7 @@ This function will create and insert/append the elements needed for the paginati
 */
 
 function addPagination(list) {
-   const list_length = list.length / 9; // may need to round up or down here
+   const list_length = list.length / 9; 
    const ul_linklist = document.querySelector('.link-list');
    ul_linklist.innerHTML = '';
 
@@ -88,7 +88,6 @@ function addPagination(list) {
       appendElement(buttonListItem, pageButton);
       ul_linklist.insertAdjacentElement('beforeend', buttonListItem);
    }
-   // Still need to figure out how to make it fire specifically on the buttons and not around them.
    
    ul_linklist.addEventListener('click', (e) => {
       // .tagName always returns the name of the tag in uppercase letters, so make sure it's BUTTON not button.
@@ -100,30 +99,6 @@ function addPagination(list) {
          showPage(data, newActiveButton.textContent);
       }
    })
-}
-
-// extra credit - Add a search component
-
-function addSearchBar() {
-   const searchLabel = deviseElement('label', 'student-search');
-   searchLabel.htmlFor = 'search';
-   const searchSpan = deviseElement('span', '');
-   searchSpan.textContent = 'Search by name';
-   const searchInput = deviseElement('input', '');
-   searchInput.id = 'search';
-   searchInput.placeholder = 'Search by name...';
-   const searchButton = deviseElement('button', '');
-   searchButton.type = 'button';
-   const searchIMG = deviseElement('img', '');
-   searchIMG.src = 'img/icn-search.svg';
-   searchIMG.alt = 'Search Icon';
-   appendElement(searchButton, searchIMG);
-   appendElement(searchLabel, searchSpan);
-   appendElement(searchLabel, searchInput);
-   appendElement(searchLabel, searchButton);
-   const headingTwo = document.querySelector('h2');
-   headingTwo.insertAdjacentElement('beforeend', searchLabel);
-
 }
 
 // Call functions
