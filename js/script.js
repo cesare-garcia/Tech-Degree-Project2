@@ -4,13 +4,11 @@ FSJS Project 2 - Data Pagination and Filtering
 */
 
 
-
 /*
 For assistance:
    Check out the "Project Resources" section of the Instructions tab: https://teamtreehouse.com/projects/data-pagination-and-filtering#instructions
    Reach out in your Slack community: https://treehouse-fsjs-102.slack.com/app_redirect?channel=unit-2
 */
-
 
 
 /*
@@ -96,7 +94,7 @@ function addPagination(list) {
       // .tagName always returns the name of the tag in uppercase letters, so make sure it's BUTTON not button.
       if ( e.target.tagName == 'BUTTON' ) {
          const newInactiveButton = document.querySelector('.active');
-         newInactiveButton.className = 'inactive';
+         newInactiveButton.classList.remove('active');
          const newActiveButton = e.target;
          newActiveButton.className = 'active';
          showPage(data, newActiveButton.textContent);
@@ -132,30 +130,4 @@ function addSearchBar() {
 
 showPage(data, 1);
 addPagination(data);
-addSearchBar();
 
-// Adding functionality to the Search Bar via event Listener
-
-
-const search = document.querySelector('#search');
-const submit = document.querySelector('button'); 
-
-function performSearch(searchInput, students) {
-   console.log(searchInput);
-   //console.log(students);
-   let newStudentArray = [];
-   for ( let i = 0; i < students.length; i++ ) {
-      newStudentArray += `${students[i].name.first} ${students[i].name.last}, `;
-   }
-   return newStudentArray;
-    
- // likely will need to add these names to a new array
- // this array will be used for the new pagination 
-      
-}
-
-submit.addEventListener('click', (event) => {
-   event.preventDefault();
-   const info = performSearch(search, data);
-   console.log(info);
-});
